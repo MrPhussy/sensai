@@ -1,9 +1,9 @@
 # Eliza Solana Example
 *with Crossmint custodial wallets and GOAT*
 
-This fork is a simplified example of how to create an Eliza agent that can **execute onchain transactions** using Crossmint custodial wallets and the GOAT. It's designed specifically for Solana, focusing on agents that handle complex onchain tasks. By using GOAT for all onchain functionality, this version removes unnecessary plugins for other blockchains and introduces a simpler character to start with that is tailored to doing actions on Solana.
+This fork is a **simplified example of Eliza focused on executing transactions onchain** using Crossmint custodial wallets and [GOAT](https://github.com/goat-sdk/goat-sdk). It's designed specifically for Solana, focusing on agents that handle complex onchain tasks. By using GOAT for all onchain functionality, this version removes unnecessary plugins for other blockchains and introduces a simpler character to start with that is tailored to doing actions on Solana.
 
-Onchain actions: Mint NFTs, check the latest trending tokens, purchase, trade them, and much more.
+**Onchain actions**: Mint NFTs, check the latest trending tokens, purchase, trade them, and much more.
 
 Tech stack:
 - [Eliza](https://github.com/ai16z/eliza) - The AI agent framework
