@@ -1,133 +1,71 @@
-# Eliza 🤖
+# Eliza Solana Example
+*with Crossmint custodial wallets and GOAT*
 
-<div align="center">
-  <img src="./docs/static/img/eliza_banner.jpg" alt="Eliza Banner" width="100%" />
-</div>
+This fork is a simplified example of how to create an Eliza agent that can **execute onchain transactions** using Crossmint custodial wallets and the GOAT. It's designed specifically for Solana, focusing on agents that handle complex onchain tasks. By using GOAT for all onchain functionality, this version removes unnecessary plugins for other blockchains and introduces a simpler character to start with that is tailored to doing actions on Solana.
 
-<div align="center">
+Onchain actions: Mint NFTs, check the latest trending tokens, purchase, trade them, and much more.
 
-  📖 [Documentation](https://ai16z.github.io/eliza/) | 🎯 [Examples](https://github.com/thejoven/awesome-eliza)
+Tech stack:
+- [Eliza](https://github.com/ai16z/eliza) - The AI agent framework
+- [GOAT](https://github.com/goat-sdk/goat-sdk) - The open-source framework for connecting AI agents to any onchain app
+- [Crossmint custodial wallets](https://docs.crossmint.com/wallets/introduction) - Best in class server-side MPC wallets
 
-</div>
+**Support**
+- [Discord](https://discord.gg/goat-sdk)
 
-## 🌍 README Translations
 
-[中文说明](./README_CN.md) | [日本語の説明](./README_JA.md) | [한국어 설명](./README_KOR.md) | [Français](./README_FR.md) | [Português](./README_PTBR.md) | [Türkçe](./README_TR.md) | [Русский](./README_RU.md) | [Español](./README_ES.md) | [Italiano](./README_IT.md) | [ไทย](./README_TH.md)
+## Running the project
+### Set up
 
-## ✨ Features
-
--   🛠️ Full-featured Discord, Twitter and Telegram connectors
--   🔗 Support for every model (Llama, Grok, OpenAI, Anthropic, etc.)
--   👥 Multi-agent and room support
--   📚 Easily ingest and interact with your documents
--   💾 Retrievable memory and document store
--   🚀 Highly extensible - create your own actions and clients
--   ☁️ Supports many models (local Llama, OpenAI, Anthropic, Groq, etc.)
--   📦 Just works!
-
-## 🎯 Use Cases
-
--   🤖 Chatbots
--   🕵️ Autonomous Agents
--   📈 Business Process Handling
--   🎮 Video Game NPCs
--   🧠 Trading
-
-## 🚀 Quick Start
-
-### Prerequisites
-
--   [Python 2.7+](https://www.python.org/downloads/)
--   [Node.js 23+](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
--   [pnpm](https://pnpm.io/installation)
-
-> **Note for Windows Users:** [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install-manual) is required.
-
-### Use the Starter (Recommended)
-
+1. Clone the repository
 ```bash
-git clone https://github.com/ai16z/eliza-starter.git
-
-cp .env.example .env
-
-pnpm i && pnpm start
+git clone https://github.com/goat-sdk/eliza-solana-example.git
 ```
 
-Then read the [Documentation](https://ai16z.github.io/eliza/) to learn how to customize your Eliza.
-
-### Manually Start Eliza (Only recommended if you know what you are doing)
-
+2. Go into the project directory
 ```bash
-# Clone the repository
-git clone https://github.com/ai16z/eliza.git
-
-# Checkout the latest release
-# This project iterates fast, so we recommend checking out the latest release
-git checkout $(git describe --tags --abbrev=0)
+cd eliza-solana-example
 ```
 
-### Start Eliza with Gitpod
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ai16z/eliza/tree/main)
-
-### Edit the .env file
-
-Copy .env.example to .env and fill in the appropriate values.
-
+3. Install the dependencies
+```bash
+pnpm install
 ```
+
+4. Run `pnpm build`
+
+5. Copy the .env.example file to .env:
+```bash
 cp .env.example .env
 ```
 
-Note: .env is optional. If your planning to run multiple distinct agents, you can pass secrets through the character JSON
+6. Get an OpenAI API key and fill in the `OPENAI_API_KEY` in the .env file
 
-### Automatically Start Eliza
+### Giving the agent a wallet
 
-This will run everything to setup the project and start the bot with the default character.
+1. Create a developer account in the Crossmint [Staging Console](https://staging.crossmint.com/console). Open that link, sign in, and accept the dialog to continue. *NOTE: Crossmint offers two consoles: staging, for development and testing, and www, for production.*
 
-```bash
-sh scripts/start.sh
-```
+2. Once logged in, click the “Integrate” tab, then select “API Keys” from the top menu. Within the Server-side keys section, click the “Create new key” button in the top right. Then, select the scopes `wallets.create`, `wallets.read`, `wallets.fund`, `wallets:nfts.read`, `wallets:transactions.create` and `wallets:transactions.read` under the Wallets API category and create your key.
 
-### Edit the character file
+3. Save the key and fill in the following in the .env file:
+    - `CROSSMINT_API_KEY=your_api_key`
+    - `CROSSMINT_EMAIL=your_email@example.com`
+    - `CROSSMINT_ENV=staging`
 
-1. Open `agent/src/character.ts` to modify the default character. Uncomment and edit.
+4. Create a wallet attached to the specified email by running the command `pnpm create-wallet`
 
-2. To load custom characters:
-    - Use `pnpm start --characters="path/to/your/character.json"`
-    - Multiple character files can be loaded simultaneously
-3. Connect with X (Twitter)
-    - change `"clients": []` to `"clients": ["twitter"]` in the character file to connect with X
+### Running the agent
 
-### Manually Start Eliza
+1. You can now run the agent with the command `pnpm start --character="characters/solana-hacker.character.json"`
 
-```bash
-pnpm i
-pnpm build
-pnpm start
 
-# The project iterates fast, sometimes you need to clean the project if you are coming back to the project
-pnpm clean
-```
+## Configuring the project
+### The character
+- You can see the definition of your character in the `characters/solana-hacker.character.json` file.
+- This project gives you a simple example character to get you started. This allows you to easily add onchain actions and test them out while increasing the complexity of your agent step by step. Keep adding and modifying the bio and tone of the character to make it your own.
 
-#### Additional Requirements
+### Eliza
+- This is an Eliza fork so you can do pretty much everything you can do with Eliza. Check out the [Eliza docs](https://ai16z.github.io/eliza/) for more information on how to integrate your agent with Twitter, Discord, etc.
 
-You may need to install Sharp. If you see an error when starting up, try installing it with the following command:
-
-```
-pnpm install --include=optional sharp
-```
-
-### Community & contact
-
--   [GitHub Issues](https://github.com/ai16z/eliza/issues). Best for: bugs you encounter using Eliza, and feature proposals.
--   [Discord](https://discord.gg/ai16z). Best for: sharing your applications and hanging out with the community.
-
-## Contributors
-
-<a href="https://github.com/ai16z/eliza/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ai16z/eliza" />
-</a>
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=ai16z/eliza&type=Date)](https://star-history.com/#ai16z/eliza&Date)
+### GOAT
+- The Crossmint plugin (`packages/plugin-crossmint`) uses GOAT to add all onchain functionality to the agent. Within the `index.ts` file of the plugin you can add any GOAT plugins you need or even create your own. Check out the [GOAT docs](https://ohmygoat.dev) for more information.
