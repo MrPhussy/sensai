@@ -67,7 +67,7 @@ cp .env.example .env
 ### Eliza
 - This is an Eliza fork so you can do pretty much everything you can do with Eliza. Check out the [Eliza docs](https://ai16z.github.io/eliza/) for more information on how to integrate your agent with Twitter, Discord, etc.
 
-### GOAT
+### Onchain actions with GOAT
 - The Crossmint plugin (`packages/plugin-crossmint`) uses GOAT to add all onchain functionality to the agent. Within the `index.ts` file of the plugin you can add any GOAT plugins you need or even create your own. Check out the [GOAT docs](https://ohmygoat.dev) for more information.
 ```typescript
 const actions = await getOnChainActions({
