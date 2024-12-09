@@ -69,3 +69,8 @@ cp .env.example .env
 
 ### GOAT
 - The Crossmint plugin (`packages/plugin-crossmint`) uses GOAT to add all onchain functionality to the agent. Within the `index.ts` file of the plugin you can add any GOAT plugins you need or even create your own. Check out the [GOAT docs](https://ohmygoat.dev) for more information.
+
+## Tips for troubleshooting
+1. When making changes to any package (e.g the Crossmint plugin), remember to run `pnpm build` to update the project.
+2. To see why the agent is making a certain decision, add console logs to see the prompts and responses that it is getting on every interaction. For example. if you are using the direct client that would be [here](https://github.com/goat-sdk/eliza-solana-example/blob/main/packages/client-direct/src/index.ts#L135).
+3. You can also copy the agent prompts that you log and play with them in ChatGPT to see how you could improve them.
