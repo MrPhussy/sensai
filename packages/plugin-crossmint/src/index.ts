@@ -1,11 +1,12 @@
 import type { Plugin } from "@ai16z/eliza";
 import { getOnChainActions } from "./actions";
-import { getWalletClient, getWalletProvider } from "./wallet";
+import { getWalletClientAndConnection, getWalletProvider } from "./wallet";
+import { splToken } from "@goat-sdk/plugin-spl-token";
 
 async function createCrossmintPlugin(
     getSetting: (key: string) => string | undefined
 ): Promise<Plugin> {
-    const walletClient = await getWalletClient(getSetting);
+    const { walletClient, connection } = await getWalletClientAndConnection(getSetting);
     if (!walletClient) {
         throw new Error("Wallet client not found");
     }
@@ -16,6 +17,13 @@ async function createCrossmintPlugin(
         // See all available plugins at https://ohmygoat.dev/chains-wallets-plugins#plugins
         plugins: [
             // Add you solana plugins here
+            splToken({
+                connection,
+                network: "mainnet",
+            }),
+            // coingecko({
+            //  apiKey: getSetting("COINGECKO_API_KEY")
+            // })
         ],
     });
 

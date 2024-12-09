@@ -2,7 +2,7 @@ import { WalletClient } from "@goat-sdk/core";
 import { Connection } from "@solana/web3.js";
 import { crossmint } from "@goat-sdk/crossmint";
 
-export async function getWalletClient(
+export async function getWalletClientAndConnection(
     getSetting: (key: string) => string | undefined
 ) {
     const apiKey = getSetting("CROSSMINT_API_KEY");
@@ -24,12 +24,17 @@ export async function getWalletClient(
 
     const { custodial } = crossmint(apiKey);
 
-    return custodial({
-        chain: "solana",
-        email: email,
-        env: env as "staging" | "production",
-        connection: new Connection(RPC_URL, "confirmed"),
-    });
+    const connection = new Connection(RPC_URL, "confirmed");
+
+    return {
+        walletClient: await custodial({
+            chain: "solana",
+            email: email,
+            env: env as "staging" | "production",
+            connection: connection,
+        }),
+        connection: connection,
+    };
 }
 
 export function getWalletProvider(walletClient: WalletClient) {

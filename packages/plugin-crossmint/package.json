@@ -8,6 +8,8 @@
         "@ai16z/eliza": "workspace:*",
         "@goat-sdk/core": "0.3.11",
         "@goat-sdk/crossmint": "0.1.7",
+        "@goat-sdk/plugin-coingecko": "^0.1.1",
+        "@goat-sdk/plugin-spl-token": "^0.0.1",
         "@solana/web3.js": "1.95.8",
         "tsup": "8.3.5",
         "tweetnacl": "^1.0.3"
