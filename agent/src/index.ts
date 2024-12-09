@@ -24,10 +24,8 @@ import {
     stringToUuid,
     validateCharacterConfig,
 } from "@ai16z/eliza";
-import { zgPlugin } from "@ai16z/plugin-0g";
-import { goatPlugin } from "@ai16z/plugin-goat";
+import createCrossmintPlugin from "@ai16z/plugin-crossmint";
 import { bootstrapPlugin } from "@ai16z/plugin-bootstrap";
-// import { buttplugPlugin } from "@ai16z/plugin-buttplug";
 import {
     coinbaseCommercePlugin,
     coinbaseMassPaymentsPlugin,
@@ -36,14 +34,8 @@ import {
     webhookPlugin,
     advancedTradePlugin,
 } from "@ai16z/plugin-coinbase";
-import { confluxPlugin } from "@ai16z/plugin-conflux";
 import { imageGenerationPlugin } from "@ai16z/plugin-image-generation";
-import { evmPlugin } from "@ai16z/plugin-evm";
 import { createNodePlugin } from "@ai16z/plugin-node";
-import { solanaPlugin } from "@ai16z/plugin-solana";
-import { aptosPlugin, TransferAptosToken } from "@ai16z/plugin-aptos";
-import { flowPlugin } from "@ai16z/plugin-flow";
-import { teePlugin } from "@ai16z/plugin-tee";
 import Database from "better-sqlite3";
 import fs from "fs";
 import path from "path";
@@ -354,7 +346,7 @@ function getSecret(character: Character, secret: string) {
 
 let nodePlugin: any | undefined;
 
-export function createAgent(
+export async function createAgent(
     character: Character,
     db: IDatabaseAdapter,
     cache: ICacheManager,
@@ -368,6 +360,10 @@ export function createAgent(
 
     nodePlugin ??= createNodePlugin();
 
+    const crossmintPlugin = await createCrossmintPlugin((secret) =>
+        getSecret(character, secret)
+    );
+
     return new AgentRuntime({
         databaseAdapter: db,
         token,
@@ -375,22 +371,9 @@ export function createAgent(
         evaluators: [],
         character,
         plugins: [
+            crossmintPlugin,
             bootstrapPlugin,
-            getSecret(character, "CONFLUX_CORE_PRIVATE_KEY")
-                ? confluxPlugin
-                : null,
             nodePlugin,
-            getSecret(character, "SOLANA_PUBLIC_KEY") ||
-            (getSecret(character, "WALLET_PUBLIC_KEY") &&
-                !getSecret(character, "WALLET_PUBLIC_KEY")?.startsWith("0x"))
-                ? solanaPlugin
-                : null,
-            getSecret(character, "EVM_PRIVATE_KEY") ||
-            (getSecret(character, "WALLET_PUBLIC_KEY") &&
-                !getSecret(character, "WALLET_PUBLIC_KEY")?.startsWith("0x"))
-                ? evmPlugin
-                : null,
-            getSecret(character, "ZEROG_PRIVATE_KEY") ? zgPlugin : null,
             getSecret(character, "COINBASE_COMMERCE_KEY")
                 ? coinbaseCommercePlugin
                 : null,
@@ -408,13 +391,6 @@ export function createAgent(
             getSecret(character, "COINBASE_NOTIFICATION_URI")
                 ? webhookPlugin
                 : null,
-            getSecret(character, "WALLET_SECRET_SALT") ? teePlugin : null,
-            getSecret(character, "ALCHEMY_API_KEY") ? goatPlugin : null,
-            getSecret(character, "FLOW_ADDRESS") &&
-            getSecret(character, "FLOW_PRIVATE_KEY")
-                ? flowPlugin
-                : null,
-            getSecret(character, "APTOS_PRIVATE_KEY") ? aptosPlugin : null,
         ].filter(Boolean),
         providers: [],
         actions: [],
@@ -455,7 +431,7 @@ async function startAgent(character: Character, directClient) {
         await db.init();
 
         const cache = intializeDbCache(character, db);
-        const runtime = createAgent(character, db, cache, token);
+        const runtime = await createAgent(character, db, cache, token);
 
         await runtime.initialize();
 
