@@ -69,6 +69,23 @@ cp .env.example .env
 
 ### GOAT
 - The Crossmint plugin (`packages/plugin-crossmint`) uses GOAT to add all onchain functionality to the agent. Within the `index.ts` file of the plugin you can add any GOAT plugins you need or even create your own. Check out the [GOAT docs](https://ohmygoat.dev) for more information.
+```typescript
+const actions = await getOnChainActions({
+        wallet: walletClient,
+        // Add plugins here based on what actions you want to use
+        // See all available plugins at https://ohmygoat.dev/chains-wallets-plugins#plugins
+        plugins: [
+            // Add you solana plugins here
+            splToken({
+                connection,
+                network: "mainnet",
+            }),
+            // coingecko({
+            //  apiKey: getSetting("COINGECKO_API_KEY")
+            // })
+        ],
+    });
+```
 
 ## Tips for troubleshooting
 1. When making changes to any package (e.g the Crossmint plugin), remember to run `pnpm build` to update the project.
