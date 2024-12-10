@@ -15,6 +15,9 @@ Tech stack:
 
 
 ## Running the project
+### Requirements
+- Node.js 23.3.0+
+
 ### Set up
 
 1. Clone the repository
