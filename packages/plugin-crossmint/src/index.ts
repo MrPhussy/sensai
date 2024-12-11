@@ -2,6 +2,7 @@ import type { Plugin } from "@ai16z/eliza";
 import { getOnChainActions } from "./actions";
 import { getWalletClientAndConnection, getWalletProvider } from "./wallet";
 import { splToken } from "@goat-sdk/plugin-spl-token";
+import { sendSOL } from "@goat-sdk/core";
 
 async function createCrossmintPlugin(
     getSetting: (key: string) => string | undefined
@@ -17,6 +18,7 @@ async function createCrossmintPlugin(
         // See all available plugins at https://ohmygoat.dev/chains-wallets-plugins#plugins
         plugins: [
             // Add you solana plugins here
+            sendSOL(),
             splToken({
                 connection,
                 network: "mainnet",
