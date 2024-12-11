@@ -14,7 +14,7 @@ if (!apiKey || !email) {
     const response = await createWallet(email, apiKey);
 
     if (response.error) {
-        console.error(response.error);
+        console.error(response);
         return;
     }
 
