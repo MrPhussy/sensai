@@ -7,7 +7,7 @@
     "dependencies": {
         "@ai16z/eliza": "workspace:*",
         "@goat-sdk/core": "0.3.14",
-        "@goat-sdk/crossmint": "0.2.3",
+        "@goat-sdk/crossmint": "0.2.5",
         "@goat-sdk/plugin-coingecko": "^0.1.1",
         "@goat-sdk/plugin-jupiter": "^0.0.3",
         "@goat-sdk/plugin-spl-token": "^0.0.1",

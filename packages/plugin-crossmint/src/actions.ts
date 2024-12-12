@@ -35,7 +35,9 @@ export async function getOnChainActions<TWalletClient extends WalletClient>({
     const tools = await getTools<TWalletClient>({
         wallet,
         plugins,
-        wordForTool: "action",
+        options: {
+            wordForTool: "action",
+        },
     });
 
     return tools

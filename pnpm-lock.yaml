@@ -850,8 +850,8 @@ importers:
         specifier: 0.3.14
         version: 0.3.14(@walletconnect/modal@2.6.1(react@18.3.1))(buffer@6.0.3)(bufferutil@4.0.8)(encoding@0.1.13)(events@3.3.0)(tslib@2.8.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(web-vitals@3.5.2)
       '@goat-sdk/crossmint':
-        specifier: 0.2.3
-        version: 0.2.3(@goat-sdk/core@0.3.14(@walletconnect/modal@2.6.1(react@18.3.1))(buffer@6.0.3)(bufferutil@4.0.8)(encoding@0.1.13)(events@3.3.0)(tslib@2.8.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(web-vitals@3.5.2))(bufferutil@4.0.8)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
+        specifier: 0.2.5
+        version: 0.2.5(@goat-sdk/core@0.3.14(@walletconnect/modal@2.6.1(react@18.3.1))(buffer@6.0.3)(bufferutil@4.0.8)(encoding@0.1.13)(events@3.3.0)(tslib@2.8.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(web-vitals@3.5.2))(bufferutil@4.0.8)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)
       '@goat-sdk/plugin-coingecko':
         specifier: ^0.1.1
         version: 0.1.1(@goat-sdk/core@0.3.14(@walletconnect/modal@2.6.1(react@18.3.1))(buffer@6.0.3)(bufferutil@4.0.8)(encoding@0.1.13)(events@3.3.0)(tslib@2.8.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(web-vitals@3.5.2))(viem@2.21.53(bufferutil@4.0.8)(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8))
@@ -3603,10 +3603,10 @@ packages:
   '@goat-sdk/core@0.3.14':
     resolution: {integrity: sha512-LcARapyKIeN9NmkHkS4lieX7sR7j8io2ip1hBFoACppwlWwrTvr++73OJ7iFCnkVQKXw0RpddzA09yAIZsvilw==}
 
-  '@goat-sdk/crossmint@0.2.3':
-    resolution: {integrity: sha512-Ql2onxNWw21IN6QyQ0eZyXV2pHjMS0Fi1zKEO7/6rIjG0YQwD41OODSMSIU4Pb+8kXYIo/N6EW6qtf6B3Nc7kw==}
+  '@goat-sdk/crossmint@0.2.5':
+    resolution: {integrity: sha512-yNIysbHvp3UcjYFoUIoFe/fhraT7P+pZPNEueRaUMXpZfRk0vY2aeDFHHQaPHfvHyrofg6nNWALOinVYde+Lyw==}
     peerDependencies:
-      '@goat-sdk/core': 0.3.14
+      '@goat-sdk/core': workspace:*
 
   '@goat-sdk/plugin-coingecko@0.1.1':
     resolution: {integrity: sha512-xZrsl2v3ojbenSUbhzAhw95ZhnSfWtn31nVomBrtUTAY8JqzGP2LT5n7zRv3M7l2n+SsIG8UUclWkM8iTv5kDg==}
@@ -20066,7 +20066,7 @@ snapshots:
       - utf-8-validate
       - web-vitals
 
-  '@goat-sdk/crossmint@0.2.3(@goat-sdk/core@0.3.14(@walletconnect/modal@2.6.1(react@18.3.1))(buffer@6.0.3)(bufferutil@4.0.8)(encoding@0.1.13)(events@3.3.0)(tslib@2.8.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(web-vitals@3.5.2))(bufferutil@4.0.8)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)':
+  '@goat-sdk/crossmint@0.2.5(@goat-sdk/core@0.3.14(@walletconnect/modal@2.6.1(react@18.3.1))(buffer@6.0.3)(bufferutil@4.0.8)(encoding@0.1.13)(events@3.3.0)(tslib@2.8.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(web-vitals@3.5.2))(bufferutil@4.0.8)(encoding@0.1.13)(typescript@5.6.3)(utf-8-validate@5.0.10)':
     dependencies:
       '@crossmint/common-sdk-base': 0.3.1
       '@goat-sdk/core': 0.3.14(@walletconnect/modal@2.6.1(react@18.3.1))(buffer@6.0.3)(bufferutil@4.0.8)(encoding@0.1.13)(events@3.3.0)(tslib@2.8.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(web-vitals@3.5.2)
