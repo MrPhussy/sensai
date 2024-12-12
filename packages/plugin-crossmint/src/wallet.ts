@@ -44,6 +44,8 @@ export function getWalletProvider(walletClient: WalletClient) {
             try {
                 const address = walletClient.getAddress();
                 const balance = await walletClient.balanceOf(address);
+                console.log("address", address);
+                console.log("balance", balance);
                 const balanceInSOL = formatUnits(balance.value, balance.decimals);
                 return `Solana Wallet Address: ${address}\nBalance: ${balanceInSOL} SOL`;
             } catch (error) {
