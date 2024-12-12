@@ -12,7 +12,8 @@
         "@goat-sdk/plugin-spl-token": "^0.0.1",
         "@solana/web3.js": "1.95.8",
         "tsup": "8.3.5",
-        "tweetnacl": "^1.0.3"
+        "tweetnacl": "^1.0.3",
+        "viem": "2.21.53"
     },
     "scripts": {
         "build": "tsup --format esm --dts",
