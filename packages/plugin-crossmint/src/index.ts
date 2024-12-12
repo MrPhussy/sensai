@@ -3,7 +3,7 @@ import { getOnChainActions } from "./actions";
 import { getWalletClientAndConnection, getWalletProvider } from "./wallet";
 import { splToken } from "@goat-sdk/plugin-spl-token";
 import { sendSOL } from "@goat-sdk/core";
-
+import { jupiter } from "@goat-sdk/plugin-jupiter";
 async function createCrossmintPlugin(
     getSetting: (key: string) => string | undefined
 ): Promise<Plugin> {
@@ -19,6 +19,7 @@ async function createCrossmintPlugin(
         plugins: [
             // Add you solana plugins here
             sendSOL(),
+            jupiter(),
             splToken({
                 connection,
                 network: "mainnet",

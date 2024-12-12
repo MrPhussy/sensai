@@ -31,7 +31,6 @@ export async function getWalletClientAndConnection(
         walletClient: await custodial({
             chain: "solana",
             email: email,
-            env: env as "staging" | "production",
             connection: connection,
         }),
         connection: connection,

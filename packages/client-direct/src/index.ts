@@ -202,6 +202,7 @@ export class DirectClient {
                     template: messageHandlerTemplate,
                 });
 
+                console.log("context", context);
                 const response = await generateMessageResponse({
                     runtime: runtime,
                     context,
