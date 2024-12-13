@@ -4,6 +4,7 @@ import { getWalletClientAndConnection, getWalletProvider } from "./wallet";
 import { splToken } from "@goat-sdk/plugin-spl-token";
 import { sendSOL } from "@goat-sdk/core";
 import { jupiter } from "@goat-sdk/plugin-jupiter";
+import { crossmint } from "@goat-sdk/crossmint";
 async function createCrossmintPlugin(
     getSetting: (key: string) => string | undefined
 ): Promise<Plugin> {
@@ -11,6 +12,9 @@ async function createCrossmintPlugin(
     if (!walletClient) {
         throw new Error("Wallet client not found");
     }
+
+    const { mint } = crossmint(getSetting("CROSSMINT_API_KEY"));
+
     console.log("walletClient", walletClient);
     const actions = await getOnChainActions({
         wallet: walletClient,
@@ -24,6 +28,7 @@ async function createCrossmintPlugin(
                 connection,
                 network: "mainnet",
             }),
+            mint(),
             // coingecko({
             //  apiKey: getSetting("COINGECKO_API_KEY")
             // })
