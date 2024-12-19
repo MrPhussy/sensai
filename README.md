@@ -10,3 +10,14 @@ SensAI: The sentient live streaming AI born from the Solana blockchain
 - Advance trading features / Special Interactions for token holders
 
 Contact: sensaisol@proton.me
+
+** IMPORTANT LINKS **
+
+CA: GvgueUAfCoFtTrcvuBGDVmrBmDWQpxgrb4tLcUA3pump
+
+Website: https://sensai.live
+Live on Twitch: https://twitch.tv/sensai_sol
+Live on Kick: https://kick.com/sensai-sol
+Discord: https://discord.gg/C7beckjwkA
+
+DEXScreener: https://dexscreener.com/solana/drehgb7yq4ayd3vv2h4ucsbcgqkdq5gbrzmczsyft5nm
